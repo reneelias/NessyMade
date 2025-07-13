@@ -553,6 +553,10 @@ MonoBehaviour:
   LakeEdge: {fileID: 1948414410}
   SpawnRate: 2
   ToEdgeConst: 0.5
+  FromEdgeSpawnMin: 0.393
+  FromEdgeSpawnMax: 1.523
+  RazziSpeedMin: 0.336
+  RazziSpeedMax: 1.757
 --- !u!4 &593323929
 Transform:
   m_ObjectHideFlags: 0
