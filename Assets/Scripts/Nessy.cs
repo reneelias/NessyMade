@@ -36,6 +36,7 @@ public class Nessy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         SetNessyState(NessyState.Idle);
+        
     }
 
     // Update is called once per frame
@@ -56,8 +57,10 @@ public class Nessy : MonoBehaviour
                 break;
         }
 
+
         waterSprite.transform.position = transform.position;
         waterSprite.GetComponent<SpriteRenderer>().flipX = spriteRenderer.flipX;
+        waterSprite.GetComponent<SpriteRenderer>().sortingOrder = spriteRenderer.sortingOrder;
     }
 
     void UpdateIdle()
