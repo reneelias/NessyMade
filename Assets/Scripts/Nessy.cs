@@ -16,7 +16,7 @@ public class Nessy : MonoBehaviour
     public float idleTimeMax = 3f;
     private float idleTime = 1f;
     private float idleDT = 0f;
-    public enum NessyState { Idle, Moving }
+    public enum NessyState { Idle, Moving, Eating }
     public NessyState nessyState
     {
         protected set;
@@ -63,6 +63,11 @@ public class Nessy : MonoBehaviour
     void UpdateIdle()
     {
         idleDT += Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            SetNessyState(NessyState.Eating);
+        }
 
         if (idleDT >= idleTime)
         {
@@ -114,6 +119,10 @@ public class Nessy : MonoBehaviour
                 Vector3 scale = transform.localScale;
                 scale.x = movementDirection.x > 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
                 transform.localScale = scale;
+                break;
+
+            case NessyState.Eating:
+                animator.SetTrigger("Eating");
                 break;
         }
     }
