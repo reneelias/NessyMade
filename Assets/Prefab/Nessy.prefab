@@ -52,6 +52,9 @@ MonoBehaviour:
   movementTimeMax: 2
   movementSpeedMin: 20
   movmentSpeedMax: 40
+  idleTimeMin: 1
+  idleTimeMax: 3
+  waterSprite: {fileID: 0}
 --- !u!212 &5298301981379742980
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -182,7 +185,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0

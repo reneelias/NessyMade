@@ -57,10 +57,7 @@ public class Nessy : MonoBehaviour
                 break;
         }
 
-
-        waterSprite.transform.position = transform.position;
-        waterSprite.GetComponent<SpriteRenderer>().flipX = spriteRenderer.flipX;
-        waterSprite.GetComponent<SpriteRenderer>().sortingOrder = spriteRenderer.sortingOrder;
+        UpdateWaterSprite();
     }
 
     void UpdateIdle()
@@ -84,6 +81,15 @@ public class Nessy : MonoBehaviour
         }
     }
 
+    void UpdateWaterSprite()
+    {
+        waterSprite.transform.position = transform.position;
+        waterSprite.GetComponent<SpriteRenderer>().sortingOrder = spriteRenderer.sortingOrder;
+        Vector3 scale = waterSprite.transform.localScale;
+        scale.x = movementDirection.x > 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+        waterSprite.transform.localScale = scale;
+    }
+
     public void SetNessyState(NessyState nS)
     {
         nessyState = nS;
@@ -97,7 +103,7 @@ public class Nessy : MonoBehaviour
                 idleTime = Random.Range(idleTimeMin, idleTimeMax);
                 idleDT = 0f;
                 break;
-                
+
             case NessyState.Moving:
                 animator.SetTrigger("Idle");
                 movementTime = Random.Range(movementTimeMax, movementTimeMax);
@@ -105,7 +111,9 @@ public class Nessy : MonoBehaviour
                 float moveAngle = Random.Range(0f, Mathf.PI * 2f);
                 movementDirection = new Vector2(Mathf.Cos(moveAngle), Mathf.Sin(moveAngle));
                 movementSpeed = Random.Range(movementSpeedMin, movmentSpeedMax);
-                spriteRenderer.flipX = movementDirection.x > 0;
+                Vector3 scale = transform.localScale;
+                scale.x = movementDirection.x > 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+                transform.localScale = scale;
                 break;
         }
     }
