@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Boat : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] protected float speed = 5.0f;
     private Rigidbody2D rb;
