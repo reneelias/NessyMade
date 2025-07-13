@@ -570,7 +570,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RazziPrefab: {fileID: 6471893091112751497, guid: 747339632e734344e850dd5c47652267, type: 3}
   LakeEdge: {fileID: 1948414410}
-  SpawnRate: 2
   ToEdgeConst: 0.5
   FromEdgeSpawnMin: 0.393
   FromEdgeSpawnMax: 1.523
@@ -580,6 +579,8 @@ MonoBehaviour:
   FlashTimerMax: 5
   FilmMin: 0
   FilmMax: 5
+  AutoSpawn: 0
+  SpawnRate: 5
 --- !u!4 &593323929
 Transform:
   m_ObjectHideFlags: 0

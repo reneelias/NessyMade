@@ -6,7 +6,6 @@ public class RazziSpawner : MonoBehaviour
 {
     public Transform RazziPrefab;
     public EdgeCollider2D LakeEdge;
-    public float SpawnRate = 2f;
     public float ToEdgeConst = 0.5f;
     [Range(0f, 2f)] public float FromEdgeSpawnMin;
     [Range(0f, 2f)] public float FromEdgeSpawnMax;
@@ -17,9 +16,13 @@ public class RazziSpawner : MonoBehaviour
     [Range(1f, 5f)] public float FilmMin;
     [Range(1f, 5f)] public float FilmMax;
     
+    public bool AutoSpawn;
+    public float SpawnRate = 2f;
+    
 
     private Transform lake;
     private Vector2 lakeCenter;
+    private float spawnTimer;
     List<Razzi> razzies = new();
     
 
@@ -33,6 +36,14 @@ public class RazziSpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
+            spawnRazzi();
+        }
+
+        if (!AutoSpawn) return;
+        spawnTimer += Time.deltaTime;
+        if (spawnTimer >= SpawnRate)
+        {
+            spawnTimer -= SpawnRate;
             spawnRazzi();
         }
     }
