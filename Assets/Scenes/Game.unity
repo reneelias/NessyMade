@@ -916,8 +916,8 @@ Transform:
   m_GameObject: {fileID: 1948414409}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 10.179038}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalScale: {x: 9.14, y: 6.92, z: 10.179038}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1066,7 +1066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 859256779294850989, guid: 29029c2b1f3735c4fb2569e2ee7fcfd7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 859256779294850989, guid: 29029c2b1f3735c4fb2569e2ee7fcfd7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1103,6 +1103,10 @@ PrefabInstance:
     - target: {fileID: 5938046507266799559, guid: 29029c2b1f3735c4fb2569e2ee7fcfd7, type: 3}
       propertyPath: m_Name
       value: Boat
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767242893070753821, guid: 29029c2b1f3735c4fb2569e2ee7fcfd7, type: 3}
+      propertyPath: turningSpeed
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
