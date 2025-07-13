@@ -26,6 +26,7 @@ public class Nessy : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+    public GameObject waterSprite;
 
 
     // Start is called before the first frame update
@@ -54,6 +55,9 @@ public class Nessy : MonoBehaviour
                 UpdateMoving();
                 break;
         }
+
+        waterSprite.transform.position = transform.position;
+        waterSprite.GetComponent<SpriteRenderer>().flipX = spriteRenderer.flipX;
     }
 
     void UpdateIdle()
