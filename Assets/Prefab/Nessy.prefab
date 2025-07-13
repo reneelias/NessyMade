@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1293597595640477960}
   - component: {fileID: 5298301981379742980}
   - component: {fileID: 6703288058276917435}
-  - component: {fileID: 3860897557157844321}
+  - component: {fileID: 2334174238693878670}
   - component: {fileID: 6028107922937679446}
   m_Layer: 0
   m_Name: Nessy
@@ -128,8 +128,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &3860897557157844321
-BoxCollider2D:
+--- !u!60 &2334174238693878670
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,7 +160,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.1590161, y: -1.5775497}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -170,9 +170,20 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.5020895, y: 1.7297826}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 2.59105, y: -1.224582}
+      - {x: 2.225459, y: -0.9088924}
+      - {x: 1.6199089, y: -0.68301845}
+      - {x: 1.0097685, y: -0.7729001}
+      - {x: 0.1312263, y: -1.1660321}
+      - {x: -0.73513055, y: -1.5089614}
+      - {x: -0.23021495, y: -2.2245538}
+      - {x: 0.81580603, y: -2.382035}
+      - {x: 2.4387097, y: -2.3674486}
+      - {x: 2.9296188, y: -2.2407625}
+      - {x: 3.1829913, y: -2.0982404}
+  m_UseDelaunayMesh: 0
 --- !u!50 &6028107922937679446
 Rigidbody2D:
   serializedVersion: 4

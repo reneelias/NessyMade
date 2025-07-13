@@ -84,7 +84,7 @@ public class Nessy : MonoBehaviour
     void UpdateWaterSprite()
     {
         waterSprite.transform.position = transform.position;
-        waterSprite.GetComponent<SpriteRenderer>().sortingOrder = spriteRenderer.sortingOrder;
+        waterSprite.GetComponent<SpriteRenderer>().sortingOrder = spriteRenderer.sortingOrder + 1;
         Vector3 scale = waterSprite.transform.localScale;
         scale.x = movementDirection.x > 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
         waterSprite.transform.localScale = scale;

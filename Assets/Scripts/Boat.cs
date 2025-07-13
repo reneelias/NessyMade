@@ -23,7 +23,7 @@ public class Boat : MonoBehaviour
     void UpdateDirection()
     {
         Vector3 scale = transform.localScale;
-        scale.x = rb.velocity.x > 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+        scale.x = rb.velocity.x < 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
         transform.localScale = scale;
     }
 

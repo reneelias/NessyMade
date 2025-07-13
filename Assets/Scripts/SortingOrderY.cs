@@ -6,6 +6,7 @@ public class SortingOrderY : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     public float orderScaler = 3f;
+    public int orderOffset = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,6 @@ public class SortingOrderY : MonoBehaviour
 
     void FixedUpdate() 
     {
-        spriteRenderer.sortingOrder = -(int)(transform.position.y * orderScaler);
+        spriteRenderer.sortingOrder = -(int)(transform.position.y * orderScaler) + orderOffset;
     }
 }

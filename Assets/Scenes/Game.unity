@@ -140,7 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ad7e296086b484f8eac35c5a333fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderScaler: 3
+  orderScaler: 5
+  orderOffset: 0
 --- !u!1 &504027947
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +773,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4477546649241178174, guid: a8e6441fdc5db3241943238181bd8923, type: 3}
-      insertIndex: -1
+      insertIndex: 5
       addedObject: {fileID: 139706889}
   m_SourcePrefab: {fileID: 100100000, guid: a8e6441fdc5db3241943238181bd8923, type: 3}
 --- !u!1 &1378827660
@@ -922,7 +923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ad7e296086b484f8eac35c5a333fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderScaler: 3
+  orderScaler: 5
+  orderOffset: 0
 --- !u!1 &1712045437
 GameObject:
   m_ObjectHideFlags: 0
