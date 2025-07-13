@@ -616,18 +616,6 @@ PrefabInstance:
       value: Nessy
       objectReference: {fileID: 0}
     - target: {fileID: 4587221834058087058, guid: a8e6441fdc5db3241943238181bd8923, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4587221834058087058, guid: a8e6441fdc5db3241943238181bd8923, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4587221834058087058, guid: a8e6441fdc5db3241943238181bd8923, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4587221834058087058, guid: a8e6441fdc5db3241943238181bd8923, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.813
       objectReference: {fileID: 0}
@@ -666,14 +654,6 @@ PrefabInstance:
     - target: {fileID: 4587221834058087058, guid: a8e6441fdc5db3241943238181bd8923, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4587221834058087058, guid: a8e6441fdc5db3241943238181bd8923, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298301981379742980, guid: a8e6441fdc5db3241943238181bd8923, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
