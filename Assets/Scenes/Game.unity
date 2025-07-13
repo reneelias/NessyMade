@@ -576,6 +576,10 @@ MonoBehaviour:
   FromEdgeSpawnMax: 1.523
   RazziSpeedMin: 0.336
   RazziSpeedMax: 1.757
+  FlashTimerMin: 1
+  FlashTimerMax: 5
+  FilmMin: 0
+  FilmMax: 5
 --- !u!4 &593323929
 Transform:
   m_ObjectHideFlags: 0
