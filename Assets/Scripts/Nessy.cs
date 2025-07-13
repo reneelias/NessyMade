@@ -12,8 +12,8 @@ public class Nessy : MonoBehaviour
     private float movementDT = 0f;
     private float movementSpeed = 20f;
     private Vector2 movementDirection = Vector2.zero;
-    private float idleTimeMin = 1f;
-    private float idleTimeMax = 3f;
+    public float idleTimeMin = 1f;
+    public float idleTimeMax = 3f;
     private float idleTime = 1f;
     private float idleDT = 0f;
     public enum NessyState { Idle, Moving }
@@ -25,6 +25,7 @@ public class Nessy : MonoBehaviour
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
 
 
     // Start is called before the first frame update
@@ -32,6 +33,7 @@ public class Nessy : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
         SetNessyState(NessyState.Idle);
     }
 
@@ -46,9 +48,32 @@ public class Nessy : MonoBehaviour
         switch (nessyState)
         {
             case NessyState.Idle:
+                UpdateIdle();
                 break;
             case NessyState.Moving:
+                UpdateMoving();
                 break;
+        }
+    }
+
+    void UpdateIdle()
+    {
+        idleDT += Time.deltaTime;
+
+        if (idleDT >= idleTime)
+        {
+            SetNessyState(NessyState.Moving);
+        }
+    }
+
+    void UpdateMoving()
+    {
+        movementDT += Time.deltaTime;
+        rb.AddForce(movementDirection * movementSpeed);
+
+        if (movementDT >= movementTime)
+        {
+            SetNessyState(NessyState.Idle);
         }
     }
 
@@ -56,18 +81,24 @@ public class Nessy : MonoBehaviour
     {
         nessyState = nS;
 
+        print($"NessyState: {nessyState.ToString()}");
+
         switch (nessyState)
         {
             case NessyState.Idle:
                 animator.SetTrigger("Idle");
                 idleTime = Random.Range(idleTimeMin, idleTimeMax);
                 idleDT = 0f;
-
                 break;
+                
             case NessyState.Moving:
                 animator.SetTrigger("Idle");
                 movementTime = Random.Range(movementTimeMax, movementTimeMax);
                 movementDT = 0f;
+                float moveAngle = Random.Range(0f, Mathf.PI * 2f);
+                movementDirection = new Vector2(Mathf.Cos(moveAngle), Mathf.Sin(moveAngle));
+                movementSpeed = Random.Range(movementSpeedMin, movmentSpeedMax);
+                spriteRenderer.flipX = movementDirection.x > 0;
                 break;
         }
     }
