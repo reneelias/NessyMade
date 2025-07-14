@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
                 case InteractionCollider.InteractionType.TrashCan:
                     if (trashAmount > 0)
                     {
-                        nessy.ChangeNessyHealth(5 * trashAmount);
+                        nessy.ChangeNessyHealth(5 * trashAmount, false, true);
                         boatTrash.SetAmount(0);
                         trashAmount = 0;
                         audioSource.PlayOneShot(trashClip);

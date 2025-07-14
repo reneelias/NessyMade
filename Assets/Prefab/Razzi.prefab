@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5334348160936452099}
   - component: {fileID: 4069546520369985817}
   - component: {fileID: 7301796672438605896}
+  - component: {fileID: 5260935942639154899}
   - component: {fileID: 6148861920868992149}
   m_Layer: 0
   m_Name: Razzi
@@ -123,6 +124,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5260935942639154899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689209679535738117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ad7e296086b484f8eac35c5a333fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orderScaler: 3
+  orderOffset: 0
 --- !u!82 &6148861920868992149
 AudioSource:
   m_ObjectHideFlags: 0

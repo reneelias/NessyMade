@@ -132,17 +132,17 @@ public class Nessy : MonoBehaviour
         }
     }
 
-    public void ChangeNessyHealth(int deltaHealth, bool eatingHuman = false)
+    public void ChangeNessyHealth(int deltaHealth, bool eatingHuman = false, bool trash = false)
     {
         health = Mathf.Clamp(health + deltaHealth, 0, 100);
         chargeBar.SetExactPercentage(health / 100f);
-        if (deltaHealth > 0)
+        if (deltaHealth > 0 && !trash)
         {
             SetNessyState(NessyState.Eating);
             if (eatingHuman)
-                audioSource.PlayOneShot(eatingClip);
+                audioSource.PlayOneShot(eatingPersonClip, 2.0f);
             else
-                audioSource.PlayOneShot(eatingPersonClip);
+                audioSource.PlayOneShot(eatingClip, 2.0f);
         }
     }
 
