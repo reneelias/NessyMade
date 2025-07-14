@@ -18,6 +18,7 @@ public class ChargeBar : MonoBehaviour
     public UnityEvent BarFilled = new UnityEvent();
     private float velocity = 0f;
     float xScale;
+    public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,19 +56,32 @@ public class ChargeBar : MonoBehaviour
             BarFilled.Invoke();
             FillPercent = 1f;
         }
+
+        if (FillPercent == 0)
+        {
+            gameManager.GameOver();
+        }
     }
 
-    public void SetExactPercentage(float percentage, bool setWidthImmediate = false){
+    public void SetExactPercentage(float percentage, bool setWidthImmediate = false)
+    {
         FillPercent = percentage;
 
 
-        if(1f - FillPercent <= .005f){
+        if (1f - FillPercent <= .005f)
+        {
             BarFilled.Invoke();
             FillPercent = 1f;
         }
 
-        if(setWidthImmediate){
+        if (setWidthImmediate)
+        {
             innerBar.transform.localScale = new Vector3(FillPercent, innerBar.transform.localScale.y, innerBar.transform.localScale.z);
+        }
+
+        if (FillPercent == 0)
+        {
+            gameManager.GameOver();
         }
     }
 }
