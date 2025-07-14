@@ -13,8 +13,7 @@ public class LakeSpawner : MonoBehaviour
     public bool AutoSpawn;
     public float SpawnRate = 2f;
     private float spawnTimer;
-    
-    
+    public Nessy nessy;
     
     void Update()
     {
@@ -35,10 +34,14 @@ public class LakeSpawner : MonoBehaviour
     private void spawn()
     {
         var direction = Random.insideUnitCircle.normalized;
-        
+
         var distance = Random.Range(DistanceMin, DistanceMax);
         var spawnPoint = (Vector2)CenterSpawnPoint.position + distance * direction;
-        var newSpawn = Instantiate(SpawnPrefab, CenterSpawnPoint , false);
+        var newSpawn = Instantiate(SpawnPrefab, CenterSpawnPoint, false);
         newSpawn.localPosition = spawnPoint;
+        if (nessy != null)
+        {
+            nessy.ChangeNessyHealth(-5);
+        }
     }
 }
