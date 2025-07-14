@@ -45,12 +45,14 @@ public class Razzi : MonoBehaviour
         protected set;
         get;
     } = RezziState.Idle;
-    
+    private Nessy nessy;
+    public float flashDamageDist = 4f;
+
     public void Initialize(
-        Vector2 spawnPosition, 
-        Vector2 destination, 
-        float speed, 
-        float flashRate, 
+        Vector2 spawnPosition,
+        Vector2 destination,
+        float speed,
+        float flashRate,
         int film,
         SpawnDirection spawnDirection)
     {
@@ -75,6 +77,7 @@ public class Razzi : MonoBehaviour
             this.spawnDirection = SpawnDirection.Side;
         }
         SetRezziState(RezziState.Moving);
+        nessy = GameObject.Find("Nessy").GetComponent<Nessy>();
     }
 
     // Move the razzi
@@ -121,6 +124,10 @@ public class Razzi : MonoBehaviour
         flashing = true;
         Debug.Log($"FLASH");
         FlashEvent?.Invoke(this, new FlashEventArgs(this, 0));
+        if ((nessy.transform.position - transform.position).magnitude <= flashDamageDist)
+        {
+            nessy.ChangeNessyHealth(-5);
+        }
         SetRezziState(RezziState.Flashing);
         film -= 1;
 
