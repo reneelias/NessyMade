@@ -17,11 +17,6 @@ public class LakeSpawner : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(InputKey))
-        {
-            spawn();
-        }
-
         if (!AutoSpawn) return;
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= SpawnRate)
