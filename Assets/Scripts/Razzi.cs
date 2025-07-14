@@ -49,6 +49,7 @@ public class Razzi : MonoBehaviour
     } = RezziState.Idle;
     private Nessy nessy;
     public float flashDamageDist = 4f;
+    private AudioSource audioSource;
 
     public void Initialize(
         Vector2 spawnPosition,
@@ -80,6 +81,7 @@ public class Razzi : MonoBehaviour
         }
         SetRezziState(RezziState.Moving);
         nessy = GameObject.Find("Nessy").GetComponent<Nessy>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Move the razzi
@@ -140,7 +142,7 @@ public class Razzi : MonoBehaviour
         }
         SetRezziState(RezziState.Flashing);
         film -= 1;
-
+        audioSource.Play();
         if (film == 0)
         {
             Destroy(gameObject, OUT_OF_FILM_DESTROY);
