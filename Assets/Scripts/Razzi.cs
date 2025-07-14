@@ -2,7 +2,13 @@
 using System;
 using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+
+
+// TODO: Direction
+// TODO: Anim Events
+// TODO: Trigger Collider
+
+
 
 public class FlashEventArgs : EventArgs
 {
