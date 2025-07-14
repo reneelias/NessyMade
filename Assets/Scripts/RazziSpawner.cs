@@ -16,7 +16,6 @@ public class RazziSpawner : MonoBehaviour
     [Range(1f, 5f)] public float FlashTimerMax;
     [Range(1f, 5f)] public float FilmMin;
     [Range(1f, 5f)] public float FilmMax;
-    public SpawnDirection SpawnDirection;
     
     public bool AutoSpawn;
     public float SpawnRate = 2f;
@@ -25,7 +24,6 @@ public class RazziSpawner : MonoBehaviour
     private Transform lake;
     private Vector2 lakeCenter;
     private float spawnTimer;
-    List<Razzi> razzies = new();
     
 
     void Start()
@@ -62,6 +60,19 @@ public class RazziSpawner : MonoBehaviour
         distance += Random.Range(FromEdgeSpawnMin, FromEdgeSpawnMax);
         var spawnPoint = lakeEdgeDestination + direction * distance;
 
+        SpawnDirection spawnDirection = SpawnDirection.Side;
+        if (pointInUp(destinationPoint))
+            spawnDirection = SpawnDirection.Up;
+        else if (pointInRight(destinationPoint))
+            spawnDirection = SpawnDirection.Right;
+        else if (pointInDown(destinationPoint))
+            spawnDirection = SpawnDirection.Down;
+        else if (pointInLeft(destinationPoint))
+            spawnDirection = SpawnDirection.Left;
+        else
+            Debug.Log("UNKNOWN SPAWN DIRECTION");
+        
+        Debug.Log($"SPAWN DIRECTION {spawnDirection}");
 
         var newRaz = Instantiate(RazziPrefab, transform, false).GetComponent<Razzi>();
         newRaz.Initialize(
@@ -70,8 +81,65 @@ public class RazziSpawner : MonoBehaviour
             Random.Range(RazziSpeedMin, RazziSpeedMax),
             Random.Range(FlashTimerMin, FlashTimerMax),
             (int)Random.Range(FilmMin, FilmMax),
-            SpawnDirection);
+            spawnDirection);
     }
 
+    bool pointInDown(Vector2 point)
+    {
+        return pointInTriangle(
+            point,
+            new Vector2(-5,5),
+            new Vector2(5,5),
+            new Vector2(0,0));
+    }
+    
+    bool pointInRight(Vector2 point)
+    {
+        return pointInTriangle(
+            point,
+            new Vector2(5,5),
+            new Vector2(5,-5),
+            new Vector2(0,0));
+    }
+    
+    bool pointInUp(Vector2 point)
+    {
+        return pointInTriangle(
+            point,
+            new Vector2(5,-5),
+            new Vector2(-5,-5),
+            new Vector2(0,0));
+    }
+    
+    bool pointInLeft(Vector2 point)
+    {
+        return pointInTriangle(
+            point,
+            new Vector2(-5,-5),
+            new Vector2(-5,5),
+            new Vector2(0,0));
+    }
+    
+    
+    
+    bool pointInTriangle (Vector2 pt, Vector2 v1, Vector2 v2, Vector2 v3)
+    {
+        float d1, d2, d3;
+        bool has_neg, has_pos;
 
+        d1 = sign(pt, v1, v2);
+        d2 = sign(pt, v2, v3);
+        d3 = sign(pt, v3, v1);
+
+        has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+        has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+        return !(has_neg && has_pos);
+    }
+    
+    float sign (Vector2 p1, Vector2 p2, Vector2 p3)
+    {
+        return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+    }
+    
 }
