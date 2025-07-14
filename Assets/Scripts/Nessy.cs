@@ -30,7 +30,8 @@ public class Nessy : MonoBehaviour
     public int health = 100;
     [SerializeField] private ChargeBar chargeBar;
     [SerializeField] private float barrierOffset = 1f;
-
+    public AudioClip eatingClip;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +40,7 @@ public class Nessy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         SetNessyState(NessyState.Idle);
         chargeBar.SetExactPercentage(1f);
+        audioSource = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -124,11 +126,12 @@ public class Nessy : MonoBehaviour
 
             case NessyState.Eating:
                 animator.SetTrigger("Eating");
+                audioSource.PlayOneShot(eatingClip);
                 break;
         }
     }
 
-    public void ChangeNessyHealth(int deltaHealth)
+    public void ChangeNessyHealth(int deltaHealth, bool eatingHuman = false)
     {
         health = Mathf.Clamp(health + deltaHealth, 0, 100);
         chargeBar.SetExactPercentage(health / 100f);

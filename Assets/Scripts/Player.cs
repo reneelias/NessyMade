@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
                     }
                     else if (playerState == PlayerState.RazziCarry)
                     {
-                        nessy.ChangeNessyHealth(20);
+                        nessy.ChangeNessyHealth(20, true);
                         SetPlayerState(PlayerState.Idle);
                         boatRazzi.gameObject.SetActive(false);
                     }
