@@ -27,7 +27,7 @@ public class Nessy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     public GameObject waterSprite;
-    private int health = 100;
+    public int health = 100;
     [SerializeField] private ChargeBar chargeBar;
     [SerializeField] private float barrierOffset = 1f;
 

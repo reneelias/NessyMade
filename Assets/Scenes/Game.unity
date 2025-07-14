@@ -1269,6 +1269,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1293597595640477960, guid: a8e6441fdc5db3241943238181bd8923, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293597595640477960, guid: a8e6441fdc5db3241943238181bd8923, type: 3}
       propertyPath: chargeBar
       value: 
       objectReference: {fileID: 1831405258}
@@ -1985,7 +1989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665f370b43f2c4d4cbb22479ba81abbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameLength: 5
+  gameLength: 300
 --- !u!4 &1621269392
 Transform:
   m_ObjectHideFlags: 0
@@ -2145,6 +2149,10 @@ PrefabInstance:
       propertyPath: fillSpeed
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 5836124169151125972, guid: 01abec91d8c539542be1132dc4115e0b, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1621269391}
     - target: {fileID: 9051559459381091753, guid: 01abec91d8c539542be1132dc4115e0b, type: 3}
       propertyPath: m_Name
       value: ChargeBar
