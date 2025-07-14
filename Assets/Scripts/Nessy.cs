@@ -32,6 +32,7 @@ public class Nessy : MonoBehaviour
     [SerializeField] private float barrierOffset = 1f;
     public AudioClip eatingClip;
     private AudioSource audioSource;
+    public InteractionCollider interactionCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +46,7 @@ public class Nessy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        interactionCollider.transform.position = transform.position;
     }
 
     void FixedUpdate()
