@@ -132,6 +132,10 @@ public class Nessy : MonoBehaviour
     {
         health = Mathf.Clamp(health + deltaHealth, 0, 100);
         chargeBar.SetExactPercentage(health / 100f);
+        if (deltaHealth > 0)
+        {
+            SetNessyState(NessyState.Eating);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

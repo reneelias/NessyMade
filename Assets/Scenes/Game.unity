@@ -2468,6 +2468,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6767242893070753821, guid: 29029c2b1f3735c4fb2569e2ee7fcfd7, type: 3}
+      propertyPath: nessy
+      value: 
+      objectReference: {fileID: 139706894}
+    - target: {fileID: 6767242893070753821, guid: 29029c2b1f3735c4fb2569e2ee7fcfd7, type: 3}
       propertyPath: boatFish
       value: 
       objectReference: {fileID: 168690426}

@@ -22,12 +22,14 @@ public class Player : MonoBehaviour
     public InteractionCollider.InteractionType interactionType;
     private GameObject interactObj;
     public Vector3 interactionOffset = new Vector3(0, 1, 0);
+    public Nessy nessy;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         InteractionUI.gameObject.SetActive(false);
+        boatRazzi.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
@@ -93,11 +95,28 @@ public class Player : MonoBehaviour
                     {
                         Destroy(raz.gameObject);
                         SetPlayerState(PlayerState.RazziCarry);
+                        boatRazzi.gameObject.SetActive(true);
                     }
                     break;
                 case InteractionCollider.InteractionType.Nessy:
+                    if (fishAmount > 0)
+                    {
+                        nessy.ChangeNessyHealth(5 * fishAmount);
+                        boatFish.SetAmount(0);
+                        fishAmount = 0;
+                    }
+                    else if (playerState == PlayerState.RazziCarry)
+                    {
+                        nessy.ChangeNessyHealth(20);
+                        SetPlayerState(PlayerState.Idle);
+                        boatRazzi.gameObject.SetActive(false);
+                    }
                     break;
                 case InteractionCollider.InteractionType.Trash:
+                    if (playerState == PlayerState.RazziCarry)
+                    {
+                        break;
+                    }
                     if (trashAmount < 4)
                     {
                         trashAmount++;
@@ -106,6 +125,10 @@ public class Player : MonoBehaviour
                     }
                     break;
                 case InteractionCollider.InteractionType.Fish:
+                    if (playerState == PlayerState.RazziCarry)
+                    {
+                        break;
+                    }
                     if (fishAmount < 4)
                     {
                         fishAmount++;
@@ -131,6 +154,7 @@ public class Player : MonoBehaviour
         transform.localScale = scale;
         boatFish.SetSpriteFlip(rb.velocity.x < 0);
         boatTrash.SetSpriteFlip(rb.velocity.x < 0);
+        boatRazzi.SetSpriteFlip(rb.velocity.x < 0);
     }
 
     void UpdateFishCount()
