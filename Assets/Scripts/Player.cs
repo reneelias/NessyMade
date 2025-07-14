@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private int fishAmount = 0;
     [SerializeField] protected BoatFish boatFish;
     [SerializeField] protected BoatTrash boatTrash;
+    [SerializeField] protected BoatRazzi boatRazzi;
     [SerializeField] protected Image InteractionUI;
     public InteractionCollider.InteractionType interactionType;
     private GameObject interactObj;

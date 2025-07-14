@@ -1833,6 +1833,86 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1563883690
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153327985101201778, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717353451808292763, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: m_Name
+      value: BoatRazzi
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928281387399548174, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1591368054}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+--- !u!114 &1563883691 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8928281387399548174, guid: 541644f9a6e446e489e33e826a2c66f5, type: 3}
+  m_PrefabInstance: {fileID: 1563883690}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d73df56b124e71844b53ec9a9ecfe9b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1591368044 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5938046507266799559, guid: 29029c2b1f3735c4fb2569e2ee7fcfd7, type: 3}
@@ -2410,6 +2490,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 168690426}
     - target: {fileID: 6767242893070753821, guid: 29029c2b1f3735c4fb2569e2ee7fcfd7, type: 3}
+      propertyPath: boatRazzi
+      value: 
+      objectReference: {fileID: 1563883691}
+    - target: {fileID: 6767242893070753821, guid: 29029c2b1f3735c4fb2569e2ee7fcfd7, type: 3}
       propertyPath: boatTrash
       value: 
       objectReference: {fileID: 236122481}
@@ -2453,6 +2537,7 @@ SceneRoots:
   - {fileID: 1831405257}
   - {fileID: 168690425}
   - {fileID: 1252010284}
+  - {fileID: 1563883690}
   - {fileID: 734839859}
   - {fileID: 1648087254}
   - {fileID: 52298417}
