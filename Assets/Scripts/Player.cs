@@ -75,6 +75,18 @@ public class Player : MonoBehaviour
             switch (interactionType)
             {
                 case InteractionCollider.InteractionType.Razzi:
+                    if (trashAmount > 0)
+                    {
+
+                    }
+                    else if (fishAmount > 0)
+                    {
+                        
+                    }
+                    else
+                    {
+                        SetPlayerState(PlayerState.RazziCarry);
+                    }
                     break;
                 case InteractionCollider.InteractionType.Nessy:
                     break;
