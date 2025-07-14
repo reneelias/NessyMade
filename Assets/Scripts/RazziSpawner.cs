@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 
@@ -16,7 +17,8 @@ public class RazziSpawner : MonoBehaviour
     [Range(1f, 5f)] public float FlashTimerMax;
     [Range(1f, 5f)] public float FilmMin;
     [Range(1f, 5f)] public float FilmMax;
-    
+
+    public int MaxRazzies = 6;
     public bool AutoSpawn;
     public float SpawnRate = 2f;
     
@@ -24,16 +26,25 @@ public class RazziSpawner : MonoBehaviour
     private Transform lake;
     private Vector2 lakeCenter;
     private float spawnTimer;
+    private Queue<int> recentSpawns = new();
+    private int razziCount = 0;
+    
+    private static RazziSpawner instance;
+
+    private const int RECENT_SPAWN_MEMORY = 15;
     
 
     void Start()
     {
+        instance = this;
         lake = LakeEdge.gameObject.transform;
         lakeCenter = new Vector2(0, 0);
     }
 
     void Update()
     {
+        if (razziCount >= MaxRazzies) return;
+        
         if (Input.GetKeyDown(KeyCode.P))
         {
             spawnRazzi();
@@ -50,7 +61,16 @@ public class RazziSpawner : MonoBehaviour
 
     private void spawnRazzi()
     {
-        var lakeEdgeDestination = LakeEdge.points[Random.Range(0, LakeEdge.points.Length)];
+        razziCount++;
+        
+        var idx = 0;
+        while (recentSpawns.Contains(idx))
+            idx = Random.Range(0, LakeEdge.points.Length);
+        recentSpawns.Enqueue(idx);
+        if (recentSpawns.Count > RECENT_SPAWN_MEMORY)
+            recentSpawns.Dequeue();
+        
+        var lakeEdgeDestination = LakeEdge.points[idx];
         lakeEdgeDestination *= lake.transform.lossyScale;
         lakeEdgeDestination = new Vector2(lakeEdgeDestination.x + lake.position.x, lakeEdgeDestination.y + lake.position.y);
 
@@ -140,6 +160,11 @@ public class RazziSpawner : MonoBehaviour
     float sign (Vector2 p1, Vector2 p2, Vector2 p3)
     {
         return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+    }
+
+    public static void RemovedRazzi()
+    {
+        instance.razziCount--;
     }
     
 }

@@ -822,10 +822,10 @@ MonoBehaviour:
   FromEdgeSpawnMin: 0.393
   FromEdgeSpawnMax: 1.523
   RazziSpeedMin: 0.336
-  RazziSpeedMax: 1.757
-  FlashTimerMin: 1
+  RazziSpeedMax: 1.25
+  FlashTimerMin: 2.05
   FlashTimerMax: 5
-  FilmMin: 0
+  FilmMin: 2.01
   FilmMax: 5
   AutoSpawn: 1
   SpawnRate: 5
