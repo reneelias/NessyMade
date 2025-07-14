@@ -17,11 +17,16 @@ public class Player : MonoBehaviour
     private int fishAmount = 0;
     [SerializeField] protected BoatFish boatFish;
     [SerializeField] protected BoatTrash boatTrash;
+    [SerializeField] protected Image InteractionUI;
+    public InteractionCollider.InteractionType interactionType;
+    private GameObject interactObj;
+    public Vector3 interactionOffset = new Vector3(0, 1, 0);
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        InteractionUI.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
@@ -55,6 +60,32 @@ public class Player : MonoBehaviour
     {
         UpdateFishCount();
         UpdateTrashCount();
+        UpdateInteraction();
+    }
+
+    void UpdateInteraction()
+    {
+        if (interactObj != null)
+        {
+            InteractionUI.transform.position = interactObj.transform.position + interactionOffset;
+        }
+
+        if (interactionType != InteractionCollider.InteractionType.None && Input.GetKeyDown(KeyCode.E))
+        {
+            switch (interactionType)
+            {
+                case InteractionCollider.InteractionType.Razzi:
+                    break;
+                case InteractionCollider.InteractionType.Nessy:
+                    break;
+                case InteractionCollider.InteractionType.Trash:
+                    break;
+                case InteractionCollider.InteractionType.Fish:
+                    break;
+                case InteractionCollider.InteractionType.TrashCan:
+                    break;
+            }
+        }
     }
 
     void UpdateDirection()
@@ -137,7 +168,28 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetPlayerState(PlayerState ps) {
+    public void SetPlayerState(PlayerState ps)
+    {
         playerState = ps;
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("InteractionCollider"))
+        {
+            InteractionCollider interactionCollider = collision.GetComponent<InteractionCollider>();
+            InteractionUI.gameObject.SetActive(true);
+            interactionType = interactionCollider.interactionType;
+            interactObj = interactionCollider.gameObject;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("InteractionCollider"))
+        {
+            InteractionUI.gameObject.SetActive(false);
+            interactionType = InteractionCollider.InteractionType.None;
+        }
     }
 }
