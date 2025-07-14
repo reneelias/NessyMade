@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public class RazziSpawner : MonoBehaviour
@@ -15,6 +16,7 @@ public class RazziSpawner : MonoBehaviour
     [Range(1f, 5f)] public float FlashTimerMax;
     [Range(1f, 5f)] public float FilmMin;
     [Range(1f, 5f)] public float FilmMax;
+    public SpawnDirection SpawnDirection;
     
     public bool AutoSpawn;
     public float SpawnRate = 2f;
@@ -67,8 +69,8 @@ public class RazziSpawner : MonoBehaviour
             destinationPoint,
             Random.Range(RazziSpeedMin, RazziSpeedMax),
             Random.Range(FlashTimerMin, FlashTimerMax),
-            (int)Random.Range(FilmMin, FilmMax));
-        razzies.Add(newRaz);
+            (int)Random.Range(FilmMin, FilmMax),
+            SpawnDirection);
     }
 
 
