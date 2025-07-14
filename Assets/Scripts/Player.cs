@@ -83,6 +83,11 @@ public class Player : MonoBehaviour
                 case InteractionCollider.InteractionType.Fish:
                     break;
                 case InteractionCollider.InteractionType.TrashCan:
+                    if (trashAmount > 0)
+                    {
+                        boatTrash.SetAmount(0);
+                        trashAmount = 0;
+                    }
                     break;
             }
         }

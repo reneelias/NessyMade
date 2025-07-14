@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashCanInteraction
       objectReference: {fileID: 0}
+    - target: {fileID: 2504153498390947193, guid: aff989d8457fbd2458bd04e188f133e3, type: 3}
+      propertyPath: interactionType
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6578084404591467680, guid: aff989d8457fbd2458bd04e188f133e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.12
