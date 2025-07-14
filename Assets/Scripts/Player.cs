@@ -7,6 +7,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] protected float speed = 5.0f;
     private Rigidbody2D rb;
+    public enum PlayerState{Idle, FishCarry, TrashCarry, RazziCarry, FishFeed, TrashToss, RazziFeed}
+    public PlayerState playerState
+    {
+        protected set;
+        get;
+    } = PlayerState.Idle;
+    private int trashAmount = 0;
+    private int fishAmount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +24,28 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        MovementControls();
+        switch (playerState)
+        {
+            case PlayerState.Idle:
+                MovementControls();
+                break;
+            case PlayerState.FishCarry:
+                MovementControls();
+                break;
+            case PlayerState.TrashCarry:
+                MovementControls();
+                break;
+            case PlayerState.RazziCarry:
+                MovementControls();
+                break;
+            case PlayerState.FishFeed:
+                break;
+            case PlayerState.RazziFeed:
+                break;
+            case PlayerState.TrashToss:
+                break;
+        }
+        
         UpdateDirection();
     }
 
