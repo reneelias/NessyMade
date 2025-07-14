@@ -79,8 +79,20 @@ public class Player : MonoBehaviour
                 case InteractionCollider.InteractionType.Nessy:
                     break;
                 case InteractionCollider.InteractionType.Trash:
+                    if (trashAmount < 4)
+                    {
+                        trashAmount++;
+                        boatTrash.SetAmount(trashAmount);
+                        Destroy(interactObj.transform.parent.gameObject);
+                    }
                     break;
                 case InteractionCollider.InteractionType.Fish:
+                    if (fishAmount < 4)
+                    {
+                        fishAmount++;
+                        boatFish.SetAmount(fishAmount);
+                        Destroy(interactObj.transform.parent.gameObject);
+                    }
                     break;
                 case InteractionCollider.InteractionType.TrashCan:
                     if (trashAmount > 0)
