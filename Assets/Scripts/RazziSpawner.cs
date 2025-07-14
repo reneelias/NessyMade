@@ -45,11 +45,6 @@ public class RazziSpawner : MonoBehaviour
     {
         if (razziCount >= MaxRazzies) return;
         
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            spawnRazzi();
-        }
-
         if (!AutoSpawn) return;
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= SpawnRate)
