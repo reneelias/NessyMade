@@ -35,11 +35,13 @@ public class Razzi : MonoBehaviour
     private Animator anim;
     private SpawnDirection spawnDirection;
     private bool flashing;
+    private bool trashed;
+    private bool doneTrashed;
 
     private const float CLOSE_ENOUGH = 0.1f;
     private const float OUT_OF_FILM_DESTROY = 2f;
     
-    public enum RezziState { Idle, Moving, Flashing }
+    public enum RezziState { Idle, Moving, Flashing, Trashed }
     public RezziState rezziState
     {
         protected set;
@@ -83,7 +85,13 @@ public class Razzi : MonoBehaviour
     // Move the razzi
     void Update()
     {
-        if (flashing) return;
+        if (doneTrashed || film <= 0)
+        {
+            leave();
+            return;
+        }
+
+        if (trashed) return;
         
         if (moving)
         {
@@ -99,10 +107,13 @@ public class Razzi : MonoBehaviour
                 flashTimer -= flashRate;
                 flash();
             }
-
-            return;
         }
         
+        
+    }
+
+    void leave()
+    {
         SetRezziState(RezziState.Moving);
         move(startPosition);
     }
@@ -122,7 +133,6 @@ public class Razzi : MonoBehaviour
     void flash()
     {
         flashing = true;
-        Debug.Log($"FLASH");
         FlashEvent?.Invoke(this, new FlashEventArgs(this, 0));
         if ((nessy.transform.position - transform.position).magnitude <= flashDamageDist)
         {
@@ -133,7 +143,6 @@ public class Razzi : MonoBehaviour
 
         if (film == 0)
         {
-            Debug.Log($"OUT OF FILM");
             Destroy(gameObject, OUT_OF_FILM_DESTROY);
         }
     }
@@ -154,11 +163,22 @@ public class Razzi : MonoBehaviour
             case RezziState.Moving:
                 anim.SetTrigger($"Walk{spawnDirection}");
                 flashing = false;
+                if (trashed)
+                    doneTrashed = true;
                 break;
             case RezziState.Flashing:
                 anim.SetTrigger($"Shoot{spawnDirection}");
                 break;
+            case RezziState.Trashed:
+                anim.SetTrigger($"Trashed{spawnDirection}");
+                break;
         }
+    }
+
+    public void Trashed()
+    {
+        trashed = true;
+        SetRezziState(RezziState.Trashed);
     }
 
     void OnDestroy()

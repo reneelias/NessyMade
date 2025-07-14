@@ -76,16 +76,22 @@ public class Player : MonoBehaviour
             switch (interactionType)
             {
                 case InteractionCollider.InteractionType.Razzi:
+                    var raz = interactObj.transform.parent.GetComponent<Razzi>();
                     if (trashAmount > 0)
                     {
-
+                        raz.Trashed();
+                        boatTrash.SetAmount(0);
+                        trashAmount = 0;
                     }
                     else if (fishAmount > 0)
                     {
-                        
+                        raz.Trashed();
+                        boatFish.SetAmount(0);
+                        fishAmount = 0;
                     }
                     else
                     {
+                        Destroy(raz.gameObject);
                         SetPlayerState(PlayerState.RazziCarry);
                     }
                     break;
