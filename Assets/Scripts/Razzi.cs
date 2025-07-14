@@ -4,7 +4,6 @@ using DefaultNamespace;
 using UnityEngine;
 
 
-// TODO: Direction
 // TODO: Anim Events
 // TODO: Trigger Collider
 
@@ -35,6 +34,7 @@ public class Razzi : MonoBehaviour
     private int film;
     private Animator anim;
     private SpawnDirection spawnDirection;
+    private bool flashing;
 
     private const float CLOSE_ENOUGH = 0.1f;
     private const float OUT_OF_FILM_DESTROY = 2f;
@@ -80,6 +80,8 @@ public class Razzi : MonoBehaviour
     // Move the razzi
     void Update()
     {
+        if (flashing) return;
+        
         if (moving)
         {
             move(endPosition);
@@ -116,14 +118,10 @@ public class Razzi : MonoBehaviour
 
     void flash()
     {
+        flashing = true;
         Debug.Log($"FLASH");
         FlashEvent?.Invoke(this, new FlashEventArgs(this, 0));
         SetRezziState(RezziState.Flashing);
-        
-        // var flash = Instantiate(FlashPrefab, transform, false);
-        // flash.transform.localPosition = Vector3.zero;
-        // flash.transform.localRotation = Quaternion.identity;
-        // Destroy(flash.gameObject, 0.5f);
         film -= 1;
 
         if (film == 0)
@@ -144,13 +142,20 @@ public class Razzi : MonoBehaviour
         {
             case RezziState.Idle:
                 anim.SetTrigger($"Idle{spawnDirection}");
+                flashing = false;
                 break;
             case RezziState.Moving:
                 anim.SetTrigger($"Walk{spawnDirection}");
+                flashing = false;
                 break;
             case RezziState.Flashing:
                 anim.SetTrigger($"Shoot{spawnDirection}");
                 break;
         }
+    }
+
+    void OnDestroy()
+    {
+        RazziSpawner.RemovedRazzi();
     }
 }
