@@ -29,6 +29,7 @@ public class Nessy : MonoBehaviour
     public GameObject waterSprite;
     private int health = 100;
     [SerializeField] private ChargeBar chargeBar;
+    [SerializeField] private float barrierOffset = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -131,5 +132,15 @@ public class Nessy : MonoBehaviour
     {
         health = Mathf.Clamp(health + deltaHealth, 0, 100);
         chargeBar.SetExactPercentage(health / 100f);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Lake_OuterBounds")
+        {
+            print("Laker OuterBounds collision");
+            // rb.MovePosition(-transform.position.normalized * 3f);
+            rb.transform.position -= transform.position.normalized * barrierOffset;
+        }
     }
 }
