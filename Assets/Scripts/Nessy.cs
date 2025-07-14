@@ -27,7 +27,8 @@ public class Nessy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     public GameObject waterSprite;
-
+    private int health = 100;
+    [SerializeField] private ChargeBar chargeBar;
 
     // Start is called before the first frame update
     void Start()
@@ -36,13 +37,12 @@ public class Nessy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         SetNessyState(NessyState.Idle);
-        
+        chargeBar.SetExactPercentage(1f);
     }
-
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void FixedUpdate()
@@ -125,5 +125,11 @@ public class Nessy : MonoBehaviour
                 animator.SetTrigger("Eating");
                 break;
         }
+    }
+
+    public void ChangeNessyHealth(int deltaHealth)
+    {
+        health = Mathf.Clamp(health + deltaHealth, 0, 100);
+        chargeBar.SetExactPercentage(health / 100f);
     }
 }
