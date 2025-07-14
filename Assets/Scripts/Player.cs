@@ -139,6 +139,7 @@ public class Player : MonoBehaviour
                 case InteractionCollider.InteractionType.TrashCan:
                     if (trashAmount > 0)
                     {
+                        nessy.ChangeNessyHealth(5 * trashAmount);
                         boatTrash.SetAmount(0);
                         trashAmount = 0;
                     }
