@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     private GameObject interactObj;
     public Vector3 interactionOffset = new Vector3(0, 1, 0);
     public Nessy nessy;
+    
+    public AudioClip trashClip;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         InteractionUI.gameObject.SetActive(false);
         boatRazzi.gameObject.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -140,6 +144,7 @@ public class Player : MonoBehaviour
                         nessy.ChangeNessyHealth(5 * trashAmount);
                         boatTrash.SetAmount(0);
                         trashAmount = 0;
+                        audioSource.PlayOneShot(trashClip);
                     }
                     break;
             }

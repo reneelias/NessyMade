@@ -31,6 +31,7 @@ public class Nessy : MonoBehaviour
     [SerializeField] private ChargeBar chargeBar;
     [SerializeField] private float barrierOffset = 1f;
     public AudioClip eatingClip;
+    public AudioClip eatingPersonClip;
     private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
@@ -126,7 +127,6 @@ public class Nessy : MonoBehaviour
 
             case NessyState.Eating:
                 animator.SetTrigger("Eating");
-                audioSource.PlayOneShot(eatingClip);
                 break;
         }
     }
@@ -138,6 +138,10 @@ public class Nessy : MonoBehaviour
         if (deltaHealth > 0)
         {
             SetNessyState(NessyState.Eating);
+            if (eatingHuman)
+                audioSource.PlayOneShot(eatingClip);
+            else
+                audioSource.PlayOneShot(eatingPersonClip);
         }
     }
 
