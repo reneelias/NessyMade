@@ -1,5 +1,6 @@
 
 using System;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -26,20 +27,48 @@ public class Razzi : MonoBehaviour
     private float flashRate;
     private float flashTimer;
     private int film;
+    private Animator anim;
+    private SpawnDirection spawnDirection;
 
     private const float CLOSE_ENOUGH = 0.1f;
     private const float OUT_OF_FILM_DESTROY = 2f;
     
-    public void Initialize(Vector2 spawnPosition, Vector2 destination, float speed, float flashRate, int film)
+    public enum RezziState { Idle, Moving, Flashing }
+    public RezziState rezziState
+    {
+        protected set;
+        get;
+    } = RezziState.Idle;
+    
+    public void Initialize(
+        Vector2 spawnPosition, 
+        Vector2 destination, 
+        float speed, 
+        float flashRate, 
+        int film,
+        SpawnDirection spawnDirection)
     {
         startPosition = spawnPosition;
         endPosition = destination;
         this.speed = speed;
         this.flashRate = flashRate;
         this.film = film;
+        this.spawnDirection = spawnDirection;
 
+        anim = GetComponent<Animator>();
         transform.localPosition = spawnPosition;
         moving = true;
+
+        if (spawnDirection == SpawnDirection.Right)
+        {
+            this.spawnDirection = SpawnDirection.Side;
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (spawnDirection == SpawnDirection.Left)
+        {
+            this.spawnDirection = SpawnDirection.Side;
+        }
+        SetRezziState(RezziState.Moving);
     }
 
     // Move the razzi
@@ -63,6 +92,7 @@ public class Razzi : MonoBehaviour
             return;
         }
         
+        SetRezziState(RezziState.Moving);
         move(startPosition);
     }
 
@@ -72,23 +102,49 @@ public class Razzi : MonoBehaviour
         transform.localPosition = newPos;
         var diff = ((Vector2)transform.localPosition - destination).magnitude;
         if (diff < CLOSE_ENOUGH)
+        {
             moving = false;
+            SetRezziState(RezziState.Idle);
+        }
     }
 
     void flash()
     {
         Debug.Log($"FLASH");
         FlashEvent?.Invoke(this, new FlashEventArgs(this, 0));
-        var flash = Instantiate(FlashPrefab, transform, false);
-        flash.transform.localPosition = Vector3.zero;
-        flash.transform.localRotation = Quaternion.identity;
-        Destroy(flash.gameObject, 0.5f);
+        SetRezziState(RezziState.Flashing);
+        
+        // var flash = Instantiate(FlashPrefab, transform, false);
+        // flash.transform.localPosition = Vector3.zero;
+        // flash.transform.localRotation = Quaternion.identity;
+        // Destroy(flash.gameObject, 0.5f);
         film -= 1;
 
         if (film == 0)
         {
             Debug.Log($"OUT OF FILM");
             Destroy(gameObject, OUT_OF_FILM_DESTROY);
+        }
+    }
+
+    public void SetRezziState(RezziState newState)
+    {
+        if (newState == rezziState) return;
+        
+        Debug.Log($"RezziState: {rezziState}");
+        
+        rezziState = newState;
+        switch (rezziState)
+        {
+            case RezziState.Idle:
+                anim.SetTrigger($"Idle{spawnDirection}");
+                break;
+            case RezziState.Moving:
+                anim.SetTrigger($"Walk{spawnDirection}");
+                break;
+            case RezziState.Flashing:
+                anim.SetTrigger($"Shoot{spawnDirection}");
+                break;
         }
     }
 }
