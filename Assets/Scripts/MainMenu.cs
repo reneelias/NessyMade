@@ -1,21 +1,32 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class MainMenu : MonoBehaviour
+{
+    public Button playButton;
+    void Start()
     {
-        public void MoveToGame()
+        Screen.SetResolution(1024, 1024, true);
+        if (playButton)
         {
-            SceneManager.LoadScene("InstructScreen");
-        }
-
-        public void MoveToCredits()
-        {
-            SceneManager.LoadScene("Credits");
-        }
-
-        public void ExitGame()
-        {
-            Application.Quit();
+            playButton.Select();
         }
     }
+
+    public void MoveToGame()
+    {
+        SceneManager.LoadScene("InstructScreen");
+    }
+
+    public void MoveToCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+}
