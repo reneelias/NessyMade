@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// TODO: interaction priority
 public class Player : MonoBehaviour
 {
     [SerializeField] protected float speed = 5.0f;
