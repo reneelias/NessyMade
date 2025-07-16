@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class InstructionsScreen : MonoBehaviour
 {
     public float TimeOnScreen;
+    public TextMeshProUGUI MinutesUi;
     private float timer = 0f;
     void Start()
     {
-        
+        MinutesUi.text = GlobalHolder.GameLengthMinutes.ToString();
     }
 
     void Update()
